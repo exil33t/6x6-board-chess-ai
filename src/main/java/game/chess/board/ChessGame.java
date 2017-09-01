@@ -73,4 +73,14 @@ public class ChessGame {
         aiVsAi = !aiVsAi;
         nextRound();
     }
+
+    public void restart() throws InterruptedException {
+        firstRound = true;
+        gameBoard = new GameBoard();
+        aiPlayer = new AIPlayer(gameBoard, PawnColor.WHITE);
+        aiPlayer2 = new AIPlayer(gameBoard, PawnColor.BLACK);
+        round = PawnColor.BLACK;
+        ui.reRendBoard();
+        nextRound();
+    }
 }

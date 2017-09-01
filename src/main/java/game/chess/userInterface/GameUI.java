@@ -36,7 +36,6 @@ public class GameUI extends JFrame {
         game = new ChessGame(this);
 
         makeGameBoard();
-        makeMenu();
         mainFrame.pack();
         mainFrame.setVisible(true);
         try {
@@ -63,33 +62,7 @@ public class GameUI extends JFrame {
         mainFrame.setPreferredSize(new Dimension(800, 800));
     }
 
-    private void makeMenu() {
-        topMenu = new JMenuBar();
-        JMenu game = new JMenu("Game");
-        JMenuItem newGame = new JMenuItem("New Game");
-        game.add(newGame);
-        JMenu options = new JMenu("Options");
-        aiVSai = new JCheckBoxMenuItem("Ai vs Ai");
-        calculationDepth = new JMenuItem("Calculation depth");
-        calculationDepth.addActionListener((e)-> {
-                optionPopup.setVisible(true);
-        });
 
-        options.add(calculationDepth);
-
-
-        topMenu.add(game);
-        topMenu.add(options);
-        optionPopup = new JDialog();
-        optionPopup.setTitle("Depth");
-        optionPopup.setPreferredSize(new Dimension(200,70));
-        optionPopup.pack();
-        depthField = new JTextField(10);
-        optionPopup.add(depthField);
-
-
-        mainPanel.add(topMenu, BorderLayout.NORTH);
-    }
 
     public void rendBoard(GameBoard gameBoard) {
         this.gameBoard.removeAll();
