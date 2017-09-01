@@ -37,7 +37,6 @@ public class GameUI extends JFrame {
 
         makeGameBoard();
         makeMenu();
-//        rendBoard(this.game.getGameBoard());
         mainFrame.pack();
         mainFrame.setVisible(true);
         try {
@@ -76,18 +75,6 @@ public class GameUI extends JFrame {
                 optionPopup.setVisible(true);
         });
 
-
-        aiVSai.addActionListener((ActionEvent e) ->{
-
-            try {
-                this.getGame().swapGameMode();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-
-        });
-
-//        options.add(aiVSai);
         options.add(calculationDepth);
 
 
@@ -135,5 +122,9 @@ public class GameUI extends JFrame {
 
     public void setBlockGray(XYPoint blockGray) {
         currButtons.get(blockGray.getX() * 6 + blockGray.getY()).setBackground(Color.LIGHT_GRAY);
+    }
+
+    public void gameFinished() throws InterruptedException {
+        Thread.sleep(1000000000);
     }
 }

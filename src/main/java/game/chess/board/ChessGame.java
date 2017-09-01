@@ -9,7 +9,7 @@ import game.chess.userInterface.GameUI;
  */
 public class ChessGame {
 
-    private boolean aiVsAi = true;
+    private boolean aiVsAi = false;
     private boolean firstRound = true;
     private GameBoard gameBoard;
     private PawnColor round = PawnColor.BLACK;
@@ -39,6 +39,10 @@ public class ChessGame {
 
 
     public void nextRound() throws InterruptedException {
+        if(gameBoard.kingMissing()){
+            ui.gameFinished();
+        }
+
         round = round == PawnColor.BLACK ? PawnColor.WHITE : PawnColor.BLACK;
         if(aiPlayer.getPlayerColor() == round){ /* Rend board insta without delay */
             if(aiVsAi && !firstRound){

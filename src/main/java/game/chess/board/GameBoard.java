@@ -76,15 +76,6 @@ public class GameBoard implements Serializable{
         return false;
     }
 
-    public Pawn getPawnAtIndex(int i, int j) {
-        ArrayList<Pawn> tmp = getAllPawns();
-        for (Pawn p : tmp) {
-            if (p.getX() == i && p.getY() == j) {
-                return p;
-            }
-        }
-        return null;
-    }
 
     public ArrayList<Pawn> getAllPawns() {
         ArrayList<Pawn> tmp = new ArrayList<>(black.getPawns());
@@ -114,23 +105,24 @@ public class GameBoard implements Serializable{
     }
 
 
-    public Object deepClone() {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(this);
-            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(bais);
-            return ois.readObject();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public void executeMove(Move m) {
         Pawn p = getPawnAtXYPoint(m.getFrom());
         p.moveTo(this, m.getTo());
+    }
+
+    public boolean kingMissing() {
+        int i = 0;
+        for(Pawn pawn: getAllPawns()){
+            if(pawn.getPawnValue() == 100){
+                i++;
+            }
+        }
+        if(i < 2){
+            return true;
+        }
+
+        return false;
+
     }
 }

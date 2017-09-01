@@ -24,7 +24,6 @@ public class  BoardEvaluator {
             whitePawnValue += p.getPawnValue();
         }
 
-//        System.out.println("Gameboard black pawns : " + blackPawnValue + " - white pawns: " + whitePawnValue);
         return pawnColor == PawnColor.BLACK ? blackPawnValue - whitePawnValue : whitePawnValue - blackPawnValue;
     }
 }
